@@ -11,9 +11,39 @@ This plugin contains rules for maintaining a valid, consistent `package.json` de
 npm install --save-dev eslint eslint-plugin-package-json-dependencies
 ```
 
-# Usage
+# Usage (new `eslint.config.js`)
 
-1. Add the plugin and its parser to your eslint [config file](https://eslint.org/docs/user-guide/configuring/configuration-files) `overrides` section:
+1. Add the plugin to your eslint [config file](https://eslint.org/docs/latest/use/configure/configuration-files):
+
+```js
+// eslint.config.js
+export default [
+  {
+    files: ["*.json"],
+    plugins: {
+     'package-json-dependencies': plugin,
+    }
+  }
+]
+
+```
+
+2. Apply the specific rules applicable to your repo, e.g.:
+
+```js
+// eslint.config.js
+export default [
+  {
+    "rules": {
+      "package-json-dependencies/no-missing-types": "error"
+    }
+  }
+]
+```
+
+# Usage (legacy `.eslintrc*`)
+
+1. Add the plugin and its parser to your eslint [config file](https://eslint.org/docs/v8.x/use/configure/configuration-files) `overrides` section:
 
 ```js
 // eslintrc.json
